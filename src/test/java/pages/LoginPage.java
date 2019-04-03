@@ -1,34 +1,44 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends BaseClass{
+public class LoginPage{
 
-    By userNameTextBox = By.id("user_login");
-    By passWordTextBox = By.id("user_pass");
-    By loginButton = By.cssSelector("input[type='submit'");
+    WebDriver _driver;
 
+    @FindBy(id = "user_login")
+    WebElement userNameTextBox;
 
-    public void enterUserName (String userName)
+    @FindBy(id = "user_pass")
+    WebElement passWordTextBox;
+
+    @FindBy(css = "input[type='submit'")
+    WebElement loginButton;
+
+    public LoginPage(WebDriver driver)
     {
-        driver.findElement(userNameTextBox).sendKeys(userName);
+        this._driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
+    public void enterUserName(String userName) {
+        userNameTextBox.sendKeys(userName);
 
     }
 
-    public void enterPassword (String password)
-    {
-        driver.findElement(passWordTextBox).sendKeys(password);
-
+    public void enterPassword(String password) {
+        passWordTextBox.sendKeys(password);
     }
 
-    public void clickLoginButton()
-    {
-        driver.findElement(loginButton).click();
-
+    public void clickLoginButton() {
+        loginButton.click();
     }
 
-    public void performLogin(String userName, String password)
-    {
+    public void performLogin(String userName, String password) {
         this.enterUserName(userName);
         this.enterPassword(password);
         this.clickLoginButton();

@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.support.PageFactory;
 import pages.BaseClass;
 import pages.HomePage;
 import pages.LoginPage;
@@ -13,15 +14,16 @@ public class LoginTest extends BaseClass {
     LoginPage loginPageObject;
 
 //    public LoginTest() {
-//        super();
+//        PageFactory.initElements(driver,LoginPage.class);
+//        PageFactory.initElements(driver,HomePage.class);
 //    }
 
 
     @Before
     public void initialize() {
         setUp();
-        loginPageObject = new LoginPage();
-        homePageObject = new HomePage();
+        loginPageObject = new LoginPage(driver);
+        homePageObject = new HomePage(driver);
     }
 
     @Test
